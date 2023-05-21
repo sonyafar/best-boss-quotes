@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
+* {
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    font-family: Ubuntu Mono, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100vh;
+    width: 100%;
+
+    background-color: rgba(252, 252, 252, 0.96);
+    margin-top: 80px;
+    margin-bottom: 30px;
+
+    position: relative;
+}
+
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    
+    width: 530px;
+    min-width: 380px;
+    border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+    .content-wrapper {
+        width: 380px;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.header h2 {
+    text-align: center;
+    align-self: center;
+    font-size: 34px;
+    font-family: 700;
+}
+
+.header h3 {
+    text-align: center;
+    align-self: center;
+    font-size: 18px;
+    font-weight: 400;
+
+    color: #828282;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+img {
+    width: 200px;
+    height: auto; 
+    margin-bottom: 40px;
+}
+
+@media (max-width: 576px) {
+    .img {
+        width: 150px;
+        height: auto; 
+    }
+}
+
+.quote {
+    display: flex;
+    justify-content: center;
+    min-height: 140px;
+    padding: 20px 15px;
+    width: 100%;
+    border-radius: 6px;
+    border: 0.5px solid rgb(134, 134, 134);
+
+    background-color: rgb(250, 250, 250);
+
+    position: relative;
+}
+
+.quote h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #424242;
+    text-align: left;
+    line-height: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.quote span {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: var(--sub);
+    border-radius: 0 0 10px 0;
+}
+
+
+
+
+.actions-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.actions-wrapper a {
+    color: rgb(0, 100, 200);
+    text-decoration: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+.actions-wrapper .actions {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    margin-left: auto;
+}
+
+.actions-wrapper .actions button {
+    display: flex;
+    justify-content: right;
+
+    font-size: 16px;
+
+    padding: 8px 0px;
+    margin: 0px 10px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    transition: transform 0.1s;
+}
+
+.actions-wrapper .actions button:active {
+    transform: scale(0.9);
+}
+
+
+
+
+
+.quote-list-wrapper {
+    display: block;
+    justify-content: left;
+    padding: 15px;
+    width: 100%;
+    border-radius: 6px;
+    border: 0.5px solid rgb(134, 134, 134);
+
+    background-color: rgb(250, 250, 250);
+    cursor: pointer;
+}
+
+.quote-list-wrapper h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #424242;
+    text-align: left;
+    line-height: 1.5rem;
+}
+
+.quote-list-wrapper.opened {
+    height: 420px;
+}
+
+.quote-list {
+    display: block;
+    position: relative;
+}
+
+.quote-list.opened {
+    height: 0px;
+}
+
+ul {
+    display: none;
+    list-style: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 30px;
+}
+
+ul.opened {
+    display: block;
+    margin: 0;
+    margin-top: 1.2rem;
+    padding: 0;
+    border-top: 1px solid #999999;
+    list-style-type: none;
+    overflow-y: auto;
+    height: 340px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+ul.opened::-webkit-scrollbar {
+    display: none;
+}
+
+li {
+    display: list-item;
+    margin: 0;
+    text-align: match-parent;
+}
+
+ul.opened li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #bbbbbb;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    padding-top: 20px;
+    border-bottom: 30px;
+    margin-top: auto;
+}
+
+.footer a {
+    font-size: 16px;
+    color: rgb(59, 59, 59);
+    letter-spacing: 0.05em;
+}
+
+
+
+
+
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+}
+
+.overlay.active {
+    visibility: visible;
+}
+
+.popup {
+    margin: 180px auto;
+    padding: 35px;
+    background: #fff;
+    border-radius: 5px;
+    width: 40%;
+    height: max-content;
+    position: relative;
+}
+
+
+@media (max-width: 576px) {
+    .popup {
+        width: 80%;
+    }
+}
+
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.popup .close:hover {
+    color: #3e3e3e;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+    font-size: 18px;
+    line-height: 1.5rem;
+}
+
+.popup .content a {
+    color: rgb(0, 100, 200);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+}
+
