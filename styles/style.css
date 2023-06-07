@@ -248,6 +248,7 @@ ul.opened li {
 
 .footer {
     padding-top: 20px;
+    padding-bottom: 10px;
     border-bottom: 30px;
     margin-top: auto;
 }
@@ -255,7 +256,8 @@ ul.opened li {
 .footer a {
     font-size: 16px;
     color: rgb(59, 59, 59);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    padding: 0px 5px;
 }
 
 

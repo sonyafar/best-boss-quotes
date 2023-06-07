@@ -13,53 +13,18 @@ const popup_btn = document.getElementById('popup-btn');
 const popup = document.getElementById('popup');
 const close_btn = document.getElementById('close-btn');
 
+let counter = 0;
+
 let api = 'https://dunder-mifflin-api.vercel.app';
 
+addAllEventListeners();
 getQuote();
 
-// Add Event Listener to the buttons and links
-refresh_button.addEventListener('click', getQuote );
-share_button.addEventListener('click', () => {
-    share();
-})
-api_link.onclick = api_link.addEventListener('click', () => {
-    window.open(api, '_blank');
-})
-quote_list_toggle.addEventListener('click', () => {
-    if(quote_list.classList.contains('opened')) {
-        quote_list_toggle.classList.remove('opened');
-        arrow.innerHTML = '⬇️';
-        quote_list.classList.remove('opened');
-        menu.classList.remove('opened');
-    }
-    else {
-        quote_list_toggle.classList.toggle('opened');
-        arrow.innerHTML = '⬆️';
-        quote_list.classList.toggle('opened');
-        menu.classList.toggle('opened');
-        getAll();
-    }
-});
 
-popup_btn.addEventListener('click', () => {
-    popup.classList.toggle('active');
-})
-
-close_btn.addEventListener('click', () => {
-    popup.classList.remove('active');
-})
-
-window.addEventListener('click', ({target}) => {
-    if(target == popup) {
-        popup.classList.remove('active');
-    }
-})
-
-
-
-
-async function getQuote() {
-    switch(Math.floor(Math.random() * 3)) {
+function getQuote() {
+    counter = counter + 1;
+    let selector = (counter == 0) ? 0 : Math.floor(Math.random() * 2);
+    switch(selector) {
         case 0: {
             getQuote_bestBossQuotesAPI();
             api = 'https://best-boss-quotes-api.sonyafar.workers.dev';
@@ -71,15 +36,12 @@ async function getQuote() {
             api = 'https://dunder-mifflin-api.vercel.app'
             api_link.innerHTML = '/ dunder-mifflin-api';
         }
-        case 2: {
-            getQuote_theOfficeAPI();
-        }
     }
 }
 
 async function getQuote_bestBossQuotesAPI() {
     //Call the API
-    const res = await fetch('https://best-boss-quotes-api.sonyafar.workers.dev/', 
+    const res = await fetch('https://best-boss-quotes-api.sonyafar.workers.dev', 
     {
         headers: {
             accept: 'application/json'
@@ -128,7 +90,7 @@ async function getQuote_theOfficeAPI() {
 
 async function getAll() {
     //Call the API
-    const res = await fetch('https://best-boss-quotes-api.sonyafar.workers.dev/all', 
+    const res = await fetch('https://best-boss-quotes-api.sonyafar.workers.dev/quotes', 
     {
         headers: {
             accept: 'application/json'
@@ -148,7 +110,7 @@ async function getAll() {
 }
 
 // Share the best quote
-async function share() {
+function share() {
 
     const url = encodeURI(window.location.href);
     let text = encodeURIComponent(`${document.getElementById('quote').innerHTML} - ${url}`);
@@ -157,4 +119,45 @@ async function share() {
         `https://twitter.com/intent/tweet?text=${text}`, 
         '_blank'
     );
+}
+
+
+// Add Event Listener to buttons and links
+function addAllEventListeners() {
+    refresh_button.addEventListener('click', getQuote );
+    share_button.addEventListener('click', () => {
+        share();
+    })
+    api_link.onclick = api_link.addEventListener('click', () => {
+        window.open(api, '_blank');
+    })
+    quote_list_toggle.addEventListener('click', () => {
+        if(quote_list.classList.contains('opened')) {
+            quote_list_toggle.classList.remove('opened');
+            arrow.innerHTML = '⬇️';
+            quote_list.classList.remove('opened');
+            menu.classList.remove('opened');
+        }
+        else {
+            quote_list_toggle.classList.toggle('opened');
+            arrow.innerHTML = '⬆️';
+            quote_list.classList.toggle('opened');
+            menu.classList.toggle('opened');
+            getAll();
+        }
+    });
+
+    popup_btn.addEventListener('click', () => {
+        popup.classList.toggle('active');
+    })
+
+    close_btn.addEventListener('click', () => {
+        popup.classList.remove('active');
+    })
+
+    window.addEventListener('click', ({target}) => {
+        if(target == popup) {
+            popup.classList.remove('active');
+        }
+    })
 }
