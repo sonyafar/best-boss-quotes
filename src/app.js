@@ -18,11 +18,14 @@ let counter = 0;
 let api = 'https://dunder-mifflin-api.vercel.app';
 
 addAllEventListeners();
-getQuote();
+
+window.onload = () => {
+    counter = 0;
+    getQuote();
+};
 
 
 function getQuote() {
-    counter = counter + 1;
     let selector = (counter == 0) ? 0 : Math.floor(Math.random() * 2);
     switch(selector) {
         case 0: {
@@ -37,6 +40,8 @@ function getQuote() {
             api_link.innerHTML = '/ dunder-mifflin-api';
         }
     }
+
+    counter = counter + 1;
 }
 
 async function getQuote_bestBossQuotesAPI() {
